@@ -6,9 +6,9 @@ interface FetchResponse {
   totalPages: number;
 }
 // fetchNotes : має виконувати запит для отримання колекції нотатків із сервера. Повинна підтримувати пагінацію (через параметр сторінки) та фільтрацію за ключовим словом (пошук);
-export async function fetchNotes(page: number = 1, search: string = "", perPage: number = 12): Promise<FetchResponse> {
+export async function fetchNotes(page: number = 1, search: string = "", perPage: number = 12, tag?: string): Promise<FetchResponse> {
     const response = await axios.get<FetchResponse>("https://notehub-public.goit.study/api/notes", //очікуємо дані формату FetchResponse
-        {params: {page, search, perPage}, //GET-параметри (?page=1&search=&perPage=12)
+        {params: {page, search, perPage, tag}, //GET-параметри (?page=1&search=&perPage=12)
         headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`},} //авторизація на бекенд
     )
     return response.data; // повертає об’єкт з полем data, де є масив notes (для NoteList) та totalPages (для пагінації)
