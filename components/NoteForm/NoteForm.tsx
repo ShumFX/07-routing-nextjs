@@ -107,4 +107,3 @@ export default function NoteForm({onCancel}: NoteFormProps) {
       </Form>
     </Formik>)
 }
-
